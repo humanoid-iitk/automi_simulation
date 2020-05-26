@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package>
+  <name>automi_description</name>
+  <version>1.0.0</version>
+  <description>Describes Automi robot model with camera plugin and accelerometer plugin (hector) for Gazebo</description>
+
+  <maintainer email="arunim@todo.todo">Arunim Joarder</maintainer>
+
+
+  <license>BSD</license>
+
+
+  <!-- <url type="website">http://wiki.ros.org/darwin_description</url> -->
+
+
+  <author email="arunim@todo.todo">Arunim Joarder</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <export>
+  </export>
+</package>

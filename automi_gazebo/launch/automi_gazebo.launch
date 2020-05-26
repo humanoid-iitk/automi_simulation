@@ -1,0 +1,23 @@
+<launch>
+
+   <param name="robot_description" textfile="$(find automi_description)/urdf/automi.urdf" />  
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="worlds/empty.world"/>
+    <arg name="paused" value="true"/>
+    
+  </include>
+  
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-file $(find automi_description)/urdf/automi.urdf -urdf -model automi -z 0.3417" />
+
+
+  <include file="$(find automi_control)/launch/automi_control.launch"/>
+
+  <!-- <node name="automi_walker" pkg="automi_gazebo" type="walker.py" /> -->
+
+
+
+
+
+
+</launch>
