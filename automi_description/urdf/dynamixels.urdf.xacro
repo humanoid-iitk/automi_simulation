@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    
+    <xacro:macro name="AX12" params="name *origin parent child">
+        <joint name="${name}_dyn_fixed" type="fixed">
+            <xacro:insert_block name="origin"/>
+            <parent link="${parent}"/>
+            <child link ="${name}_AX12"/>
+        </joint>
+
+        <joint name="${name}" type="revolute">
+            <origin xyz="0 0 -0.01">
+            <parent link="${name}_AX12"/>
+            <child link ="${child}"/>
+            <axis xyz="1 0 0"/>
+        </joint>
+
+        <link name="${name}_AX12">
+            <inertial>
+                <origin xyz="0 0 0"/>
+                <mass value="0.0546"/>
+                <inertia
+                    ixx="0" ixy="0" ixz="0"
+                    iyy="0" iyz="0"
+                    izz="0"/>
+            </inertial>
+            <visual>
+                <geometry>
+                    <box size="0.0320 0.0500 0.0400"/>
+                </geometry>
+            </visual>
+            <collision>
+                <geometry>
+                    <box size="0.0320 0.0500 0.0400"/>
+                </geometry>
+            </collision>
+        </link>
+        <gazebo reference="${name}_AX12">
+            <material>
+                Gazebo/Black
+            </material>
+        </gazebo>
+
+    </xacro:macro>
+
+    <xacro:macro name="MX28" params="name *origin parent child">
+        <joint name="${name}_dyn_fixed" type="fixed">
+            <xacro:insert_block name="origin"/>
+            <parent link="${parent}"/>
+            <child link ="${name}_MX28"/>
+        </joint>
+
+        <joint name="${name}" type="revolute">
+            <origin xyz="0 0 -0.01">
+            <parent link="${name}_MX28"/>
+            <child link ="${child}"/>
+            <axis xyz="1 0 0"/>
+        </joint>
+
+        <link name="${name}_MX28">
+            <inertial>
+                <origin xyz="0 0 0"/>
+                <mass value="0.072"/>
+                <inertia
+                    ixx="0" ixy="0" ixz="0"
+                    iyy="0" iyz="0"
+                    izz="0"/>
+            </inertial>
+            <visual>
+                <geometry>
+                    <box size="0.0356 0.0506 0.0356"/>
+                </geometry>
+            </visual>
+            <collision>
+                <geometry>
+                    <box size="0.0356 0.0506 0.0356"/>
+                </geometry>
+            </collision>
+        </link>
+        <gazebo reference="${name}_MX28">
+            <material>
+                Gazebo/Black
+            </material>
+        </gazebo>
+        
+    </xacro:macro>
+
+    <xacro:macro name="MX64" params="name *origin parent child">
+        <joint name="${name}_dyn_fixed" type="fixed">
+            <xacro:insert_block name="origin"/>
+            <parent link="${parent}"/>
+            <child link ="${name}_MX64"/>
+        </joint>
+
+        <joint name="${name}" type="revolute">
+            <origin xyz="0 0 -0.01">
+            <parent link="${name}_MX64"/>
+            <child link ="${child}"/>
+            <axis xyz="1 0 0"/>
+        </joint>
+
+        <link name="${name}_MX64">
+            <inertial>
+                <origin xyz="0 0 0"/>
+                <mass value="0.1650"/>
+                <inertia
+                    ixx="0" ixy="0" ixz="0"
+                    iyy="0" iyz="0"
+                    izz="0"/>
+            </inertial>
+            <visual>
+                <geometry>
+                    <box size="0.0402 0.0611 0.0410"/>
+                </geometry>
+            </visual>
+            <collision>
+                <geometry>
+                    <box size="0.0402 0.0611 0.0410"/>
+                </geometry>
+            </collision>
+        </link>
+        <gazebo reference="${name}_MX64">
+            <material>
+                Gazebo/Black
+            </material>
+        </gazebo>
+        
+    </xacro:macro>
+
+</robot>

@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:macro name="leg" params="name *origin parent reflect">
+        <!-- JOINTS -->
+        <joint name="${name}_fixed" type="fixed">
+            <xacro:insert_block name="origin"/>
+            <parent link="${parent}"/>
+            <child link="${name}"/>
+        </joint>
+
+        <!-- LINKS -->
+        <link name="${name}">
+            <inertial>
+                <mass value="0.0"/>
+            </inertial>
+        </link>
+
+        <xacro:AX12
+            name="${name}_hip_yaw"
+            parent="${name}"
+            child="${name}_top_Ubar">
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 ${PI/2} 0.0"/>
+        </xacro:AX12>
+
+        <link name="${name}_top_Ubar">
+            <inertial>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <mass value="0.0"/>
+                <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+            </inertial>
+            <collision>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.0 0.0 0.0"/>
+                </geometry>
+            </collision>
+            <visual>
+                <geometry>
+                    <box size="0.0 0.0 0.0"/>
+                </geometry>
+            </visual>
+        </link>
+
+        <xacro:MX28
+            name="${name}_hip_roll"
+            parent="${name}_top_Ubar"
+            child="${name}_hip_pitch_MX64">
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        </xacro:MX28>
+
+        <xacro:MX64
+            name="${name}_hip_pitch"
+            parent="${name}_hip_roll_MX28"
+            child="${name}_upper_leg">
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 ${PI/2}"/>
+        </xacro:MX64>
+
+        <link name="${name}_upper_leg">
+            <inertial>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <mass value="0.0"/>
+                <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+            </inertial>
+            <visual>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.03 0.03 0.10"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.03 0.03 0.10"/>
+                </geometry>
+            </collision>
+        </link>
+
+        <xacro:MX28
+            name="${name}_knee"
+            parent="${name}_upper_leg"
+            child="${name}_lower_leg">
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 ${PI} ${PI/2}"/>
+        </xacro:MX28>
+
+        <link name="${name}_lower_leg">
+            <inertial>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <mass value="0.0"/>
+                <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+            </inertial>
+            <visual name="">
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.03 0.03 0.10"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.03 0.03 0.10"/>
+                </geometry>
+            </collision>
+        </link>
+
+        <xacro:MX28
+            name="${name}_angle_pitch"
+            parent="${name}_lower_leg"
+            child="${name}_angle_roll_MX64">
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 ${PI} ${PI/2}"/>
+        </xacro:MX28>
+
+        <xacro:MX64
+            name="${name}_angle_roll"
+            parent="${name}_angle_pitch_MX28"
+            child="${name}_foot">
+            <origin xyz="0.0 0.0 0.0" rpy="${PI} 0.0 0"/>
+        </xacro:MX64>
+
+        <link name="${name}_foot">
+            <inertial>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <mass value="0.0"/>
+                <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+            </inertial>
+            <visual name="">
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.05 0.07 0.005"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.05 0.07 0.005"/>
+                </geometry>
+            </collision>
+        </link>
+
+</robot>
