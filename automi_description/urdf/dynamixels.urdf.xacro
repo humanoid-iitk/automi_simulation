@@ -1,19 +1,32 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
     
-    <xacro:macro name="AX12" params="name *origin parent child">
+    <xacro:macro name="AX12" params="name parent child *p_origin *c_origin">
+        <joint name="${name}" type="revolute">
+            <xacro:insert_block name="c_origin"/>
+            <parent link="${name}_AX12"/>
+            <child link ="${child}"/>
+            <axis xyz="0 0 1"/>
+            <limit 
+                effort="150.0" 
+                velocity="12.0"
+                lower="-2e16"
+                upper="2e16"/>
+        </joint>
+        <gazebo reference="${name}">
+			<provideFeedback>true</provideFeedback>
+            <preserveFixedJoint>true</preserveFixedJoint>
+		</gazebo>
+        
         <joint name="${name}_dyn_fixed" type="fixed">
-            <xacro:insert_block name="origin"/>
+            <xacro:insert_block name="p_origin"/>
             <parent link="${parent}"/>
             <child link ="${name}_AX12"/>
         </joint>
-
-        <joint name="${name}" type="revolute">
-            <origin xyz="0 0 -0.01">
-            <parent link="${name}_AX12"/>
-            <child link ="${child}"/>
-            <axis xyz="1 0 0"/>
-        </joint>
+        <gazebo reference="${name}_dyn_fixed">
+			<provideFeedback>true</provideFeedback>
+            <preserveFixedJoint>true</preserveFixedJoint>
+		</gazebo>
 
         <link name="${name}_AX12">
             <inertial>
@@ -43,19 +56,32 @@
 
     </xacro:macro>
 
-    <xacro:macro name="MX28" params="name *origin parent child">
+    <xacro:macro name="MX28" params="name parent child *p_origin *c_origin">
+        <joint name="${name}" type="revolute">
+            <xacro:insert_block name="c_origin"/>
+            <parent link="${name}_MX28"/>
+            <child link ="${child}"/>
+            <axis xyz="0 0 1"/>
+            <limit 
+                effort="150.0" 
+                velocity="12.0"
+                lower="-2e16"
+                upper="2e16"/>
+        </joint>
+        <gazebo reference="${name}">
+			<provideFeedback>true</provideFeedback>
+            <preserveFixedJoint>true</preserveFixedJoint>
+		</gazebo>
+        
         <joint name="${name}_dyn_fixed" type="fixed">
-            <xacro:insert_block name="origin"/>
+            <xacro:insert_block name="p_origin"/>
             <parent link="${parent}"/>
             <child link ="${name}_MX28"/>
         </joint>
-
-        <joint name="${name}" type="revolute">
-            <origin xyz="0 0 -0.01">
-            <parent link="${name}_MX28"/>
-            <child link ="${child}"/>
-            <axis xyz="1 0 0"/>
-        </joint>
+        <gazebo reference="${name}_dyn_fixed">
+			<provideFeedback>true</provideFeedback>
+            <preserveFixedJoint>true</preserveFixedJoint>
+		</gazebo>
 
         <link name="${name}_MX28">
             <inertial>
@@ -85,19 +111,32 @@
         
     </xacro:macro>
 
-    <xacro:macro name="MX64" params="name *origin parent child">
+    <xacro:macro name="MX64" params="name parent child *p_origin *c_origin">
+        <joint name="${name}" type="revolute">
+            <xacro:insert_block name="c_origin"/>
+            <parent link="${name}_MX64"/>
+            <child link ="${child}"/>
+            <axis xyz="0 0 1"/>
+            <limit 
+                effort="150.0" 
+                velocity="12.0"
+                lower="-2e16"
+                upper="2e16"/>
+        </joint>
+        <gazebo reference="${name}">
+			<provideFeedback>true</provideFeedback>
+            <preserveFixedJoint>true</preserveFixedJoint>
+		</gazebo>
+
         <joint name="${name}_dyn_fixed" type="fixed">
-            <xacro:insert_block name="origin"/>
+            <xacro:insert_block name="p_origin"/>
             <parent link="${parent}"/>
             <child link ="${name}_MX64"/>
         </joint>
-
-        <joint name="${name}" type="revolute">
-            <origin xyz="0 0 -0.01">
-            <parent link="${name}_MX64"/>
-            <child link ="${child}"/>
-            <axis xyz="1 0 0"/>
-        </joint>
+        <gazebo reference="${name}_dyn_fixed">
+			<provideFeedback>true</provideFeedback>
+            <preserveFixedJoint>true</preserveFixedJoint>
+		</gazebo>
 
         <link name="${name}_MX64">
             <inertial>
