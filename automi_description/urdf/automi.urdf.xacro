@@ -4,52 +4,109 @@
     <xacro:property name="PI" value="3.1415926535897931"/>
 
     <xacro:include filename="$(find automi_description)/urdf/dynamixels.urdf.xacro" />
-    <!-- <xacro:include filename="$(find automi_description)/urdf/torso.urdf.xacro" /> -->
+    <xacro:include filename="$(find automi_description)/urdf/torso.urdf.xacro" />
     <xacro:include filename="$(find automi_description)/urdf/arm.urdf.xacro" />
     <xacro:include filename="$(find automi_description)/urdf/leg.urdf.xacro" />
-    <link name="1">
+    
+    <link name="floating_base">
         <inertial>
-            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-            <mass value="1.0"/>
-            <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+            <mass value="0.0005"/>
         </inertial>
-        <collision>
-            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-            <geometry>
-                <box size="0.1 0.05 0.05"/>
-            </geometry>
-        </collision>
-        <visual>
-            <geometry>
-                <box size="0.1 0.05 0.05"/>
-            </geometry>
-        </visual>
     </link>
 
+    <xacro:torso
+        name="body"
+        parent="floating_base">
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+    </xacro:torso>
+
     <xacro:leg
-        name="left"
-        parent="1"
+        name="l"
+        parent="body_hip"
         reflect="1">
         <origin xyz="0.075 0.0 0.0" rpy="0.0 ${PI} 0.0"/>
     </xacro:leg>
     <xacro:leg
-        name="right"
-        parent="1"
+        name="r"
+        parent="body_hip"
         reflect="-1">
         <origin xyz="-0.075 0.0 0.0" rpy="0.0 ${PI} 0.0"/>
     </xacro:leg>
     
     <xacro:arm
-        name="right"
-        parent="1"
+        name="r"
+        parent="body_chest"
         reflect="-1">
-        <origin xyz="-0.1 0.0 0.2" rpy="${3*PI/2} 0.0 ${PI/2}"/>
+        <origin xyz="-0.1 0.0 0.05" rpy="${3*PI/2} 0.0 ${PI/2}"/>
     </xacro:arm>
     <xacro:arm
-        name="left"
-        parent="1"
+        name="l"
+        parent="body_chest"
         reflect="1">
-        <origin xyz="0.1 0.0 0.2" rpy="${3*PI/2} 0.0 ${-PI/2}"/>
+        <origin xyz="0.1 0.0 0.05" rpy="${3*PI/2} 0.0 ${-PI/2}"/>
     </xacro:arm>
+
+    <gazebo>
+        <plugin name="joint_state_publisher" filename="libgazebo_ros_joint_state_publisher.so">
+            <jointName>
+                head_pan    ,
+                head_tilt   ,
+                r_hip_r     ,
+                r_hip_p     ,
+                r_hip_y     ,
+                r_knee      ,
+                r_ankle_r   ,
+                r_ankle_p   ,
+                r_shoulder_r,
+                r_shoulder_p,
+                r_elbow     ,
+                l_hip_r     ,
+                l_hip_p     ,
+                l_hip_y     ,
+                l_knee      ,
+                l_ankle_r   ,
+                l_ankle_p   ,
+                l_shoulder_r,
+                l_shoulder_p,
+                l_elbow     
+            </jointName>
+            <updateRate>60.0</updateRate>
+            <alwaysOn>true</alwaysOn>
+        </plugin>
+    </gazebo>
+
+    <xacro:macro name="trans" params="num joint">
+        <transmission name="tran${num}">
+        <joint name="${joint}">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </joint>
+        <type>transmission_interface/SimpleTransmission</type>
+        <actuator name="servo${num}">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+        </transmission>
+    </xacro:macro>
+
+    <xacro:trans num="1"  joint="r_hip_r"/>
+    <xacro:trans num="2"  joint="r_hip_p"/>
+    <xacro:trans num="3"  joint="r_hip_y"/>
+    <xacro:trans num="4"  joint="r_knee"/>
+    <xacro:trans num="5"  joint="r_ankle_r"/>
+    <xacro:trans num="6"  joint="r_ankle_p"/>
+    <xacro:trans num="7" joint="l_hip_r"/>
+    <xacro:trans num="8" joint="l_hip_p"/>
+    <xacro:trans num="9" joint="l_hip_y"/>
+    <xacro:trans num="10" joint="l_knee"/>
+    <xacro:trans num="11" joint="l_ankle_r"/>
+    <xacro:trans num="12" joint="l_ankle_p"/>
+    <xacro:trans num="13"  joint="r_shoulder_r"/>
+    <xacro:trans num="14" joint="r_shoulder_p"/>
+    <xacro:trans num="15" joint="r_elbow"/>
+    <xacro:trans num="16" joint="l_shoulder_r"/>
+    <xacro:trans num="17" joint="l_shoulder_p"/>
+    <xacro:trans num="18" joint="l_elbow"/>
+    <xacro:trans num="19"  joint="head_pan"/>
+    <xacro:trans num="20"  joint="head_tilt"/>
 
 </robot>

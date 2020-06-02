@@ -3,7 +3,7 @@
 
     <xacro:macro name="arm" params="name parent *origin reflect">
         <xacro:AX12
-            name="${name}_shoulder_pitch"
+            name="${name}_shoulder_p"
             parent="${parent}"
             child="${name}_shoulder">
             <xacro:insert_block name="origin"/>
@@ -31,7 +31,7 @@
         </link>
 
         <xacro:AX12 
-            name="${name}_shoulder_roll"
+            name="${name}_shoulder_r"
             parent="${name}_shoulder"
             child="${name}_arm">
             <origin xyz="0.0 0.05 0.0" rpy="0.0 ${reflect*PI/2} 0.0"/>

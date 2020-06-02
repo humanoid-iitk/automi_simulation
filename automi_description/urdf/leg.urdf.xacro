@@ -4,7 +4,7 @@
     <xacro:macro name="leg" params="name *origin parent reflect">
         <!-- LINKS -->
         <xacro:AX12
-            name="${name}_hip_yaw"
+            name="${name}_hip_y"
             parent="${parent}"
             child="${name}_top_Ubar">
             <xacro:insert_block name="origin"/>
@@ -32,7 +32,7 @@
         </link>
 
         <xacro:MX28
-            name="${name}_hip_roll"
+            name="${name}_hip_r"
             parent="${name}_top_Ubar"
             child="${name}_int_hip">
             <origin xyz="0.0 0.03 0.07" rpy="${PI/2} 0.0 0.0"/>
@@ -48,7 +48,7 @@
         </link>
 
         <xacro:MX64
-            name="${name}_hip_pitch"
+            name="${name}_hip_p"
             parent="${name}_int_hip"
             child="${name}_upper_leg">
             <origin xyz="0.0 0.0 0.0" rpy="0.0 ${PI/2*(1+reflect)} 0.0"/>
@@ -104,7 +104,7 @@
         </link>
 
         <xacro:MX28
-            name="${name}_ankle_pitch"
+            name="${name}_ankle_p"
             parent="${name}_lower_leg"
             child="${name}_int_ankle">
             <origin xyz="0.0 -0.15 0.0" rpy="0.0 0 0"/>
@@ -120,11 +120,11 @@
         </link>
 
         <xacro:MX64
-            name="${name}_ankle_roll"
+            name="${name}_ankle_r"
             parent="${name}_int_ankle"
             child="${name}_foot">
             <origin xyz="${reflect*0.05} 0.0 0.0" rpy="0 0 0"/>
-            <origin xyz="${-reflect*0.03} -0.03 0.0" rpy="0 ${reflect*-PI/2} 0.0"/>
+            <origin xyz="0.0 0.0 0.0" rpy="0 ${reflect*-PI/2} 0.0"/>
         </xacro:MX64>
 
         <link name="${name}_foot">
@@ -134,13 +134,13 @@
                 <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
             </inertial>
             <visual name="">
-                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <origin xyz="0.0 -0.04 0.04" rpy="0.0 0.0 0.0"/>
                 <geometry>
                     <box size="0.10 0.005 0.14"/>
                 </geometry>
             </visual>
             <collision>
-                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <origin xyz="0.0 -0.04 0.04" rpy="0.0 0.0 0.0"/>
                 <geometry>
                     <box size="0.10 0.005 0.14"/>
                 </geometry>
