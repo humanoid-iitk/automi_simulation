@@ -20,13 +20,13 @@
             <collision>
                 <origin xyz="0.0 0.0 0.04" rpy="0.0 0.0 ${PI/2}"/>
                 <geometry>
-                    <box size="0.15 0.05 0.005"/>
+                    <box size="0.10 0.05 0.005"/>
                 </geometry>
             </collision>
             <visual name="">
                 <origin xyz="0.0 0.0 0.04" rpy="0.0 0.0 ${PI/2}"/>
                 <geometry>
-                    <box size="0.15 0.05 0.005"/>
+                    <box size="0.10 0.05 0.005"/>
                 </geometry>
             </visual>
         </link>
@@ -51,7 +51,7 @@
             name="${name}_hip_pitch"
             parent="${name}_int_hip"
             child="${name}_upper_leg">
-            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 ${PI/2*(1+reflect)} 0.0"/>
             <origin xyz="0.0 0.0 0.0" rpy="${PI/2} 0.0 ${PI/2}"/>
         </xacro:MX64>
 
@@ -107,7 +107,7 @@
             name="${name}_ankle_pitch"
             parent="${name}_lower_leg"
             child="${name}_int_ankle">
-            <origin xyz="0.0 -0.15 0.0" rpy="0.0 ${PI} 0"/>
+            <origin xyz="0.0 -0.15 0.0" rpy="0.0 0 0"/>
             <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         </xacro:MX28>
 
@@ -123,8 +123,8 @@
             name="${name}_ankle_roll"
             parent="${name}_int_ankle"
             child="${name}_foot">
-            <origin xyz="0.05 0.0 0.0" rpy="0 0 0"/>
-            <origin xyz="-0.03 -0.03 0.0" rpy="0 ${PI/2} 0.0"/>
+            <origin xyz="${reflect*0.05} 0.0 0.0" rpy="0 0 0"/>
+            <origin xyz="${-reflect*0.03} -0.03 0.0" rpy="0 ${reflect*-PI/2} 0.0"/>
         </xacro:MX64>
 
         <link name="${name}_foot">

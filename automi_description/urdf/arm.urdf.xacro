@@ -1,4 +1,91 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+    <xacro:macro name="arm" params="name parent *origin reflect">
+        <xacro:AX12
+            name="${name}_shoulder_pitch"
+            parent="${parent}"
+            child="${name}_shoulder">
+            <xacro:insert_block name="origin"/>
+            <origin xyz="0.0 0.0 0.04" rpy="0.0 0.0 0.0"/>
+        </xacro:AX12>
+
+        <link name="${name}_shoulder">
+            <inertial>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <mass value="1.0"/>
+                <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+            </inertial>
+            <visual name="">
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.04 0.04 0.03"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.04 0.04 0.03"/>
+                </geometry>
+            </collision>
+        </link>
+
+        <xacro:AX12 
+            name="${name}_shoulder_roll"
+            parent="${name}_shoulder"
+            child="${name}_arm">
+            <origin xyz="0.0 0.05 0.0" rpy="0.0 ${reflect*PI/2} 0.0"/>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        </xacro:AX12>
+
+        <link name="${name}_arm">
+            <inertial>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <mass value="1.0"/>
+                <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+            </inertial>
+            <visual name="">
+                <origin xyz="0.0 0.05 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.02 0.1 0.02"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0.0 0.05 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.02 0.1 0.02"/>
+                </geometry>
+            </collision>
+        </link>
+
+        <xacro:AX12
+            name="${name}_elbow"
+            parent="${name}_arm"
+            child="${name}_gripper">
+            <origin xyz="0.0 0.1 0.0" rpy="0.0 ${-reflect*PI/2} 0.0"/>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        </xacro:AX12>
+
+        <link name="${name}_gripper">
+            <inertial>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <mass value="1.0"/>
+                <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+            </inertial>
+            <visual name="">
+                <origin xyz="0.0 0.05 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.02 0.1 0.02"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0.0 0.05 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.02 0.1 0.02"/>
+                </geometry>
+            </collision>
+        </link>
+
+    </xacro:macro>
+
 </robot>

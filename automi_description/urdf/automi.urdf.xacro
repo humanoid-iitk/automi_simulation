@@ -5,7 +5,7 @@
 
     <xacro:include filename="$(find automi_description)/urdf/dynamixels.urdf.xacro" />
     <!-- <xacro:include filename="$(find automi_description)/urdf/torso.urdf.xacro" /> -->
-    <!-- <xacro:include filename="$(find automi_description)/urdf/arm.urdf.xacro" /> -->
+    <xacro:include filename="$(find automi_description)/urdf/arm.urdf.xacro" />
     <xacro:include filename="$(find automi_description)/urdf/leg.urdf.xacro" />
     <link name="1">
         <inertial>
@@ -30,12 +30,26 @@
         name="left"
         parent="1"
         reflect="1">
-        <origin xyz="0.1 0.0 0.0" rpy="0.0 ${PI} 0.0"/>
+        <origin xyz="0.075 0.0 0.0" rpy="0.0 ${PI} 0.0"/>
     </xacro:leg>
     <xacro:leg
         name="right"
         parent="1"
         reflect="-1">
-        <origin xyz="-0.1 0.0 0.0" rpy="0.0 ${PI} 0.0"/>
+        <origin xyz="-0.075 0.0 0.0" rpy="0.0 ${PI} 0.0"/>
     </xacro:leg>
+    
+    <xacro:arm
+        name="right"
+        parent="1"
+        reflect="-1">
+        <origin xyz="-0.1 0.0 0.2" rpy="${3*PI/2} 0.0 ${PI/2}"/>
+    </xacro:arm>
+    <xacro:arm
+        name="left"
+        parent="1"
+        reflect="1">
+        <origin xyz="0.1 0.0 0.2" rpy="${3*PI/2} 0.0 ${-PI/2}"/>
+    </xacro:arm>
+
 </robot>
