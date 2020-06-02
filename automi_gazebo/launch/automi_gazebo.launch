@@ -12,7 +12,7 @@
   <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model automi -z 0.5" />
 
 
-  <!-- <include file="$(find automi_control)/launch/automi_control.launch"/> -->
+  <include file="$(find automi_control)/launch/automi_control.launch"/>
 
   <!-- <node name="automi_walker" pkg="automi_gazebo" type="walker.py" /> -->
 

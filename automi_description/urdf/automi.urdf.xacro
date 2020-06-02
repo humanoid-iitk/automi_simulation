@@ -11,6 +11,7 @@
     <link name="floating_base">
         <inertial>
             <mass value="0.0005"/>
+            <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
         </inertial>
     </link>
 
@@ -47,44 +48,21 @@
     </xacro:arm>
 
     <gazebo>
-        <plugin name="joint_state_publisher" filename="libgazebo_ros_joint_state_publisher.so">
-            <jointName>
-                head_pan    ,
-                head_tilt   ,
-                r_hip_r     ,
-                r_hip_p     ,
-                r_hip_y     ,
-                r_knee      ,
-                r_ankle_r   ,
-                r_ankle_p   ,
-                r_shoulder_r,
-                r_shoulder_p,
-                r_elbow     ,
-                l_hip_r     ,
-                l_hip_p     ,
-                l_hip_y     ,
-                l_knee      ,
-                l_ankle_r   ,
-                l_ankle_p   ,
-                l_shoulder_r,
-                l_shoulder_p,
-                l_elbow     
-            </jointName>
-            <updateRate>60.0</updateRate>
-            <alwaysOn>true</alwaysOn>
+        <plugin filename="libgazebo_ros_control.so" name="gazebo_ros_control">
+            <robotNamespace>/automi</robotNamespace>
         </plugin>
     </gazebo>
 
     <xacro:macro name="trans" params="num joint">
         <transmission name="tran${num}">
-        <joint name="${joint}">
-            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-        </joint>
-        <type>transmission_interface/SimpleTransmission</type>
-        <actuator name="servo${num}">
-            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-            <mechanicalReduction>1</mechanicalReduction>
-        </actuator>
+            <joint name="${joint}">
+                <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            </joint>
+            <type>transmission_interface/SimpleTransmission</type>
+            <actuator name="servo${num}">
+                <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
         </transmission>
     </xacro:macro>
 
