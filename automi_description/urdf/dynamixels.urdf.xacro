@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
     
-    <xacro:macro name="AX12" params="name parent child *p_origin *c_origin">
+    <xacro:macro name="AX18" params="name parent child *p_origin *c_origin">
         <joint name="${name}" type="revolute">
             <xacro:insert_block name="c_origin"/>
-            <parent link="${name}_AX12"/>
+            <parent link="${name}_AX18"/>
             <child link ="${child}"/>
             <axis xyz="0 0 1"/>
             <limit 
@@ -21,34 +21,36 @@
         <joint name="${name}_dyn_fixed" type="fixed">
             <xacro:insert_block name="p_origin"/>
             <parent link="${parent}"/>
-            <child link ="${name}_AX12"/>
+            <child link ="${name}_AX18"/>
         </joint>
         <gazebo reference="${name}_dyn_fixed">
 			<provideFeedback>true</provideFeedback>
             <preserveFixedJoint>true</preserveFixedJoint>
 		</gazebo>
 
-        <link name="${name}_AX12">
+        <link name="${name}_AX18">
             <inertial>
                 <origin xyz="0 0 0"/>
                 <mass value="0.0546"/>
                 <inertia
-                    ixx="0" ixy="0" ixz="0"
+                    ixx="1.57e-5" ixy="0" ixz="0"
                     iyy="0" iyz="0"
                     izz="0"/>
             </inertial>
             <visual>
                 <geometry>
-                    <box size="0.0320 0.0500 0.0400"/>
+                    <!-- <box size="0.0320 0.0500 0.0400"/> -->
+                    <mesh filename="package://automi_description/meshes/AX18.stl"  scale="1e-2 1e-2 1e-2"/>
                 </geometry>
             </visual>
             <collision>
                 <geometry>
-                    <box size="0.0320 0.0500 0.0400"/>
+                    <!-- <box size="0.0320 0.0500 0.0400"/> -->
+                    <mesh filename="package://automi_description/meshes/AX18.stl"  scale="1e-2 1e-2 1e-2"/>
                 </geometry>
             </collision>
         </link>
-        <gazebo reference="${name}_AX12">
+        <gazebo reference="${name}_AX18">
             <material>
                 Gazebo/Black
             </material>
@@ -93,13 +95,17 @@
                     izz="0"/>
             </inertial>
             <visual>
+                <origin xyz="0 0 0" rpy="0.0 0.0 ${PI}"/>
                 <geometry>
-                    <box size="0.0356 0.0506 0.0356"/>
+                    <!-- <box size="0.0356 0.0506 0.0356"/> -->
+                    <mesh filename="package://automi_description/meshes/MX28.stl"  scale="1e-2 1e-2 1e-2"/>
                 </geometry>
             </visual>
             <collision>
+                <origin xyz="0 0 0" rpy="0.0 0.0 ${PI}"/>
                 <geometry>
-                    <box size="0.0356 0.0506 0.0356"/>
+                    <!-- <box size="0.0356 0.0506 0.0356"/> -->
+                    <mesh filename="package://automi_description/meshes/MX28.stl"  scale="1e-2 1e-2 1e-2"/>
                 </geometry>
             </collision>
         </link>
@@ -148,13 +154,17 @@
                     izz="0"/>
             </inertial>
             <visual>
+                <origin xyz="0 0 0" rpy="0.0 ${PI/2} ${PI}"/>
                 <geometry>
-                    <box size="0.0402 0.0611 0.0410"/>
+                    <!-- <box size="0.0402 0.0611 0.0410"/> -->
+                    <mesh filename="package://automi_description/meshes/MX64.stl"  scale="1e-2 1e-2 1e-2"/>
                 </geometry>
             </visual>
             <collision>
+                <origin xyz="0 0 0" rpy="0.0 ${PI/2} ${PI}"/>
                 <geometry>
-                    <box size="0.0402 0.0611 0.0410"/>
+                    <!-- <box size="0.0402 0.0611 0.0410"/> -->
+                    <mesh filename="package://automi_description/meshes/MX64.stl"  scale="1e-2 1e-2 1e-2"/>
                 </geometry>
             </collision>
         </link>

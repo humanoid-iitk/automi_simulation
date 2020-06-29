@@ -3,39 +3,41 @@
 
     <xacro:macro name="leg" params="name *origin parent reflect">
         <!-- LINKS -->
-        <xacro:AX12
+        <xacro:MX28
             name="${name}_hip_y"
             parent="${parent}"
-            child="${name}_top_Ubar">
+            child="${name}_thigh">
             <xacro:insert_block name="origin"/>
-            <origin xyz="0.0 0.0 -0.01" rpy="0.0 0.0 0.0"/>
-        </xacro:AX12>
+            <origin xyz="0.0 0.0 0.022" rpy="0.0 0.0 0.0"/>
+        </xacro:MX28>
 
-        <link name="${name}_top_Ubar">
+        <link name="${name}_thigh">
             <inertial>
                 <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
                 <mass value="1.0"/>
                 <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
             </inertial>
-            <collision>
-                <origin xyz="0.0 0.0 0.04" rpy="0.0 0.0 ${PI/2}"/>
-                <geometry>
-                    <box size="0.10 0.05 0.005"/>
-                </geometry>
-            </collision>
             <visual name="">
-                <origin xyz="0.0 0.0 0.04" rpy="0.0 0.0 ${PI/2}"/>
+                <origin xyz="-0.02 0.03 0.045" rpy="${-PI/2} 0.0 ${PI/2}"/>
                 <geometry>
-                    <box size="0.10 0.05 0.005"/>
+                    <!-- <box size="0.10 0.05 0.005"/> -->
+                    <mesh filename="package://automi_description/meshes/thigh.stl"  scale="1e-2 1e-2 1e-2"/>
                 </geometry>
             </visual>
+            <collision>
+                <origin xyz="-0.02 0.03 0.045" rpy="${-PI/2} 0.0 ${PI/2}"/>
+                <geometry>
+                    <!-- <box size="0.10 0.05 0.005"/> -->
+                    <mesh filename="package://automi_description/meshes/thigh.stl"  scale="1e-2 1e-2 1e-2"/>
+                </geometry>
+            </collision>
         </link>
 
         <xacro:MX28
             name="${name}_hip_r"
-            parent="${name}_top_Ubar"
+            parent="${name}_thigh"
             child="${name}_int_hip">
-            <origin xyz="0.0 0.03 0.07" rpy="${PI/2} 0.0 0.0"/>
+            <origin xyz="0.0 0.042 0.035" rpy="${PI/2} 0.0 0.0"/>
             <origin xyz="0.0 0.0 0.05" rpy="0 0 0.0"/>
         </xacro:MX28>
 
@@ -62,26 +64,28 @@
                 <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
             </inertial>
             <visual name="">
-                <origin xyz="0.075 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <origin xyz="-0.025 -0.03 -0.02" rpy="${PI/2} 0.0 ${PI/2}"/>
                 <geometry>
-                    <box size="0.15 0.025 0.025"/>
+                    <!-- <box size="0.15 0.025 0.025"/> -->
+                    <mesh filename="package://automi_description/meshes/upper_leg.stl"  scale="1e-2 1e-2 1e-2"/>
                 </geometry>
             </visual>
             <collision>
-                <origin xyz="0.075 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <origin xyz="-0.025 -0.03 -0.02" rpy="${PI/2} 0.0 ${PI/2}"/>
                 <geometry>
-                    <box size="0.15 0.025 0.025"/>
+                    <!-- <box size="0.15 0.025 0.025"/> -->
+                    <mesh filename="package://automi_description/meshes/upper_leg.stl"  scale="1e-2 1e-2 1e-2"/>
                 </geometry>
             </collision>
         </link>
 
-        <xacro:MX28
+        <xacro:MX64
             name="${name}_knee"
             parent="${name}_upper_leg"
             child="${name}_lower_leg">
-            <origin xyz="0.15 0.0 0.0" rpy="0.0 0.0 ${PI/2}"/>
+            <origin xyz="0.115 0.0 0.0" rpy="0.0 0.0 ${PI/2}"/>
             <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-        </xacro:MX28>
+        </xacro:MX64>
 
         <link name="${name}_lower_leg">
             <inertial>
@@ -90,15 +94,17 @@
                 <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
             </inertial>
             <visual name="">
-                <origin xyz="0.0 -0.075 0.0" rpy="0.0 0.0 0.0"/>
+                <origin xyz="0.01 0.0 0.002" rpy="${PI/2} 0.0 0.0"/>
                 <geometry>
-                    <box size="0.025 0.15 0.025"/>
+                    <!-- <box size="0.025 0.15 0.025"/> -->
+                    <mesh filename="package://automi_description/meshes/lower_leg.stl"  scale="1e-2 1e-2 1e-2"/>
                 </geometry>
             </visual>
             <collision>
-                <origin xyz="0.0 -0.075 0.0" rpy="0.0 0.0 0.0"/>
+                <origin xyz="0.01 0.0 0.002" rpy="${PI/2} 0.0 0.0"/>
                 <geometry>
-                    <box size="0.025 0.15 0.025"/>
+                    <!-- <box size="0.025 0.15 0.025"/> -->
+                    <mesh filename="package://automi_description/meshes/lower_leg.stl"  scale="1e-2 1e-2 1e-2"/>
                 </geometry>
             </collision>
         </link>
@@ -107,7 +113,7 @@
             name="${name}_ankle_p"
             parent="${name}_lower_leg"
             child="${name}_int_ankle">
-            <origin xyz="0.0 -0.15 0.0" rpy="0.0 0 0"/>
+            <origin xyz="0.0 -0.115 0.0" rpy="0.0 0 0"/>
             <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         </xacro:MX28>
 
@@ -134,9 +140,10 @@
                 <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
             </inertial>
             <visual name="">
-                <origin xyz="0.0 -0.04 0.04" rpy="0.0 0.0 0.0"/>
+                <origin xyz="0.0 -0.04 0.04" rpy="0.0 ${PI/2} 0.0"/>
                 <geometry>
-                    <box size="0.10 0.005 0.14"/>
+                    <!-- <box size="0.10 0.005 0.14"/> -->
+                    <mesh filename="package://automi_description/meshes/foot.stl"  scale="1e-2 1e-2 1e-2"/>
                 </geometry>
             </visual>
             <collision>

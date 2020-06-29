@@ -25,26 +25,26 @@
         name="l"
         parent="body_hip"
         reflect="1">
-        <origin xyz="0.075 0.0 0.0" rpy="0.0 ${PI} 0.0"/>
+        <origin xyz="0.045 -0.01 0.01" rpy="0.0 ${PI} 0.0"/>
     </xacro:leg>
     <xacro:leg
         name="r"
         parent="body_hip"
         reflect="-1">
-        <origin xyz="-0.075 0.0 0.0" rpy="0.0 ${PI} 0.0"/>
+        <origin xyz="-0.045 -0.01 0.01" rpy="0.0 ${PI} 0.0"/>
     </xacro:leg>
     
     <xacro:arm
         name="r"
         parent="body_chest"
         reflect="-1">
-        <origin xyz="-0.1 0.0 0.05" rpy="${3*PI/2} 0.0 ${PI/2}"/>
+        <origin xyz="-0.065 0.0 0.04" rpy="${PI/2} 0.0 ${3*PI/2}"/>
     </xacro:arm>
     <xacro:arm
         name="l"
         parent="body_chest"
         reflect="1">
-        <origin xyz="0.1 0.0 0.05" rpy="${3*PI/2} 0.0 ${-PI/2}"/>
+        <origin xyz="0.065 0.0 0.04" rpy="${PI/2} 0.0 ${-3*PI/2}"/>
     </xacro:arm>
 
     <gazebo>

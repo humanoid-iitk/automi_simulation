@@ -18,17 +18,20 @@
                 <mass value="1.0"/>
                 <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
             </inertial>
-            <collision>
-                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-                <geometry>
-                    <box size="0.1 0.05 0.05"/>
-                </geometry>
-            </collision>
             <visual>
+                <origin xyz="0.0 0.02 0.045" rpy="${PI/2} 0.0 ${PI/2}"/>
                 <geometry>
-                    <box size="0.1 0.05 0.05"/>
+                    <!-- <box size="0.1 0.05 0.05"/> -->
+                    <mesh filename="package://automi_description/meshes/body_hip.stl"  scale="1e-2 1e-2 1e-2"/>
                 </geometry>
             </visual>
+            <collision>
+                <origin xyz="0.0 0.02 0.045" rpy="${PI/2} 0.0 ${PI/2}"/>
+                <geometry>
+                    <!-- <box size="0.1 0.05 0.05"/> -->
+                    <mesh filename="package://automi_description/meshes/body_hip.stl"  scale="1e-2 1e-2 1e-2"/>
+                </geometry>
+            </collision>
         </link>
 
         <joint name="${name}_core_j" type="fixed">
@@ -48,15 +51,17 @@
                 <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
             </inertial>
             <visual name="">
-                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <origin xyz="-0.035 -0.02 -0.02" rpy="${PI/2} 0.0 ${PI/2}"/>
                 <geometry>
-                    <box size="0.075 0.05 0.15"/>
+                    <!-- <box size="0.075 0.05 0.15"/> -->
+                    <mesh filename="package://automi_description/meshes/body_core.stl"  scale="1e-2 1e-2 1e-2"/>
                 </geometry>
             </visual>
             <collision>
-                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <origin xyz="-0.035 -0.02 -0.02" rpy="${PI/2} 0.0 ${PI/2}"/>
                 <geometry>
-                    <box size="0.075 0.05 0.15"/>
+                    <!-- <box size="0.075 0.05 0.15"/> -->
+                    <mesh filename="package://automi_description/meshes/body_core.stl"  scale="1e-2 1e-2 1e-2"/>
                 </geometry>
             </collision>
         </link>
@@ -78,41 +83,57 @@
                 <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
             </inertial>
             <visual name="">
-                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <origin xyz="-0.02 -0.09 -0.11" rpy="${PI/2} 0.0 ${PI/2}"/>
                 <geometry>
-                    <box size="0.2 0.05 0.05"/>
+                    <!-- <box size="0.2 0.05 0.05"/> -->
+                    <mesh filename="package://automi_description/meshes/chest.stl"  scale="1e-2 1e-2 1e-2"/>
                 </geometry>
             </visual>
             <collision>
-                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <origin xyz="-0.02 -0.09 -0.11" rpy="${PI/2} 0.0 ${PI/2}"/>
                 <geometry>
-                    <box size="0.2 0.05 0.05"/>
+                    <!-- <box size="0.2 0.05 0.05"/> -->
+                    <mesh filename="package://automi_description/meshes/chest.stl"  scale="1e-2 1e-2 1e-2"/>
                 </geometry>
             </collision>
         </link>
 
-        <xacro:AX12
+        <xacro:AX18
             name="head_pan"
             parent="${name}_chest"
             child="${name}_int_head">
-            <origin xyz="0.0 0.0 0.05" rpy="0.0 0.0 ${PI/2}"/>
-            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-        </xacro:AX12>
+            <origin xyz="0.0 0.0 0.02" rpy="0.0 0.0 ${PI/2}"/>
+            <origin xyz="0.0 0.0 0.01" rpy="0.0 0.0 0.0"/>
+        </xacro:AX18>
 
         <link name="${name}_int_head">
             <inertial>
                 <mass value="0.0005"/>
                 <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
-            </inertial>            
+            </inertial> 
+            <visual name="">
+                <origin xyz="0.0 0.0 0.0" rpy="${PI/2} 0.0 ${PI/2}"/>
+                <geometry>
+                    <!-- <box size="0.2 0.05 0.05"/> -->
+                    <mesh filename="package://automi_description/meshes/Ax18_Frame.stl"  scale="1e-2 1e-2 1e-2"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0.0 0.0 0.0" rpy="${PI/2} 0.0 ${PI/2}"/>
+                <geometry>
+                    <!-- <box size="0.2 0.05 0.05"/> -->
+                    <mesh filename="package://automi_description/meshes/Ax18_Frame.stl"  scale="1e-2 1e-2 1e-2"/>
+                </geometry>
+            </collision>           
         </link>
 
-        <xacro:AX12
+        <xacro:AX18
             name="head_tilt"
             parent="${name}_int_head"
             child="${name}_camera_link">
             <origin xyz="0.0 0.0 0.05" rpy="${PI/2} 0.0 0.0"/>
-            <origin xyz="-0.03 0.0 0.0" rpy="0.0 0.0 0.0"/>
-        </xacro:AX12>
+            <origin xyz="-0.00 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        </xacro:AX18>
 
         <link name="${name}_camera_link">
             <inertial>
@@ -121,17 +142,19 @@
                 <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
             </inertial>
             <visual name="">
-                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 ${-PI/2} 0.0"/>
                 <geometry>
-                    <box size="0.02 0.02 0.02"/>
+                    <!-- <box size="0.2 0.05 0.05"/> -->
+                    <mesh filename="package://automi_description/meshes/head.stl"  scale="1e-2 1e-2 1e-2"/>
                 </geometry>
             </visual>
             <collision>
-                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 ${-PI/2} 0.0"/>
                 <geometry>
-                    <box size="0.02 0.02 0.02"/>
+                    <!-- <box size="0.2 0.05 0.05"/> -->
+                    <mesh filename="package://automi_description/meshes/head.stl"  scale="1e-2 1e-2 1e-2"/>
                 </geometry>
-            </collision>
+            </collision> 
         </link>
         <gazebo reference="${name}_camera_link">
             <material>

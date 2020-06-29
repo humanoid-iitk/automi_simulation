@@ -2,13 +2,13 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
     <xacro:macro name="arm" params="name parent *origin reflect">
-        <xacro:AX12
+        <xacro:AX18
             name="${name}_shoulder_p"
             parent="${parent}"
             child="${name}_shoulder">
             <xacro:insert_block name="origin"/>
-            <origin xyz="0.0 0.0 0.04" rpy="0.0 0.0 0.0"/>
-        </xacro:AX12>
+            <origin xyz="0.0 0.0 0.025" rpy="0.0 0.0 ${PI}"/>
+        </xacro:AX18>
 
         <link name="${name}_shoulder">
             <inertial>
@@ -17,26 +17,26 @@
                 <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
             </inertial>
             <visual name="">
-                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <origin xyz="0.0 0.0 0.0" rpy="${PI/2} ${PI} 0.0"/>
                 <geometry>
-                    <box size="0.04 0.04 0.03"/>
+                    <mesh filename="package://automi_description/meshes/shoulder.stl"  scale="1e-2 1e-2 1e-2"/>
                 </geometry>
             </visual>
             <collision>
-                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <origin xyz="0.0 0.0 0.0" rpy="${PI/2} ${PI} 0.0"/>
                 <geometry>
-                    <box size="0.04 0.04 0.03"/>
+                    <mesh filename="package://automi_description/meshes/shoulder.stl"  scale="1e-2 1e-2 1e-2"/>
                 </geometry>
             </collision>
         </link>
 
-        <xacro:AX12 
+        <xacro:AX18 
             name="${name}_shoulder_r"
             parent="${name}_shoulder"
             child="${name}_arm">
-            <origin xyz="0.0 0.05 0.0" rpy="0.0 ${reflect*PI/2} 0.0"/>
-            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-        </xacro:AX12>
+            <origin xyz="0.0 0.02 0.02" rpy="0.0 ${reflect*PI/2} ${PI}"/>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 ${PI}"/>
+        </xacro:AX18>
 
         <link name="${name}_arm">
             <inertial>
@@ -45,26 +45,28 @@
                 <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
             </inertial>
             <visual name="">
-                <origin xyz="0.0 0.05 0.0" rpy="0.0 0.0 0.0"/>
+                <origin xyz="-0.04 0.04 -0.042" rpy="0.0 0.0 0.0"/>
                 <geometry>
-                    <box size="0.02 0.1 0.02"/>
+                    <!-- <box size="0.02 0.1 0.02"/> -->
+                    <mesh filename="package://automi_description/meshes/AX18-hand.stl"  scale="1e-2 1e-2 1e-2"/>
                 </geometry>
             </visual>
             <collision>
-                <origin xyz="0.0 0.05 0.0" rpy="0.0 0.0 0.0"/>
+                <origin xyz="-0.04 0.04 -0.042" rpy="0.0 0.0 0.0"/>
                 <geometry>
-                    <box size="0.02 0.1 0.02"/>
+                    <!-- <box size="0.02 0.1 0.02"/> -->
+                    <mesh filename="package://automi_description/meshes/AX18-hand.stl"  scale="1e-2 1e-2 1e-2"/>
                 </geometry>
             </collision>
         </link>
 
-        <xacro:AX12
+        <xacro:AX18
             name="${name}_elbow"
             parent="${name}_arm"
             child="${name}_gripper">
-            <origin xyz="0.0 0.1 0.0" rpy="0.0 ${-reflect*PI/2} 0.0"/>
-            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-        </xacro:AX12>
+            <origin xyz="0.0 0.09 0.0" rpy="0.0 ${-reflect*PI/2} ${PI}"/>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 ${PI}"/>
+        </xacro:AX18>
 
         <link name="${name}_gripper">
             <inertial>
@@ -73,15 +75,17 @@
                 <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
             </inertial>
             <visual name="">
-                <origin xyz="0.0 0.05 0.0" rpy="0.0 0.0 0.0"/>
+                <origin xyz="-0.04 0.04 -0.042" rpy="0.0 0.0 0.0"/>
                 <geometry>
-                    <box size="0.02 0.1 0.02"/>
+                    <!-- <box size="0.02 0.1 0.02"/> -->
+                    <mesh filename="package://automi_description/meshes/AX18-hand.stl"  scale="1e-2 1e-2 1e-2"/>
                 </geometry>
             </visual>
             <collision>
-                <origin xyz="0.0 0.05 0.0" rpy="0.0 0.0 0.0"/>
+                <origin xyz="-0.04 0.04 -0.042" rpy="0.0 0.0 0.0"/>
                 <geometry>
-                    <box size="0.02 0.1 0.02"/>
+                    <!-- <box size="0.02 0.1 0.02"/> -->
+                    <mesh filename="package://automi_description/meshes/AX18-hand.stl"  scale="1e-2 1e-2 1e-2"/>
                 </geometry>
             </collision>
         </link>
