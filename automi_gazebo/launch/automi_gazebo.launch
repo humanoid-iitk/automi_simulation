@@ -15,6 +15,7 @@
   <include file="$(find automi_control)/launch/automi_control.launch"/>
 
   <!-- <node name="automi_walker" pkg="automi_gazebo" type="walker.py" /> -->
+  <node pkg="automi_gazebo" type="checkcontroller_node" name="checkcontroller"/>
 
 
 

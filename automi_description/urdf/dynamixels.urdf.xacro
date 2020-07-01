@@ -31,11 +31,8 @@
         <link name="${name}_AX18">
             <inertial>
                 <origin xyz="0 0 0"/>
-                <mass value="0.0546"/>
-                <inertia
-                    ixx="1.57e-5" ixy="0" ixz="0"
-                    iyy="0" iyz="0"
-                    izz="0"/>
+                <mass value="0.115109"/>
+                <inertia ixx="3.3239562e-08" ixy="-1.71315e-12"ixz="7.3197e-12" iyy="1.83264787e-08" iyz="-2.8088019e-10" izz="2.79685224e-08"/>
             </inertial>
             <visual>
                 <geometry>
