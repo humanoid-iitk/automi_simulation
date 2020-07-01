@@ -1,12 +1,13 @@
 <launch>
 
-  <rosparam file="$(find automi_control)/config/automi_control.yaml" command="load"/>
+  <rosparam file="$(find automi_control)/config/automi_control_master.yaml" command="load"/>
 
 
   <!-- load the controllers -->
+    <!-- <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="/automi" args=" head_pan_position_controller head_tilt_position_controller r_hip_r_position_controller r_hip_p_position_controller r_hip_y_position_controller r_knee_position_controller r_ankle_r_position_controller r_ankle_p_position_controller r_shoulder_r_position_controller r_shoulder_p_position_controller r_elbow_position_controller l_hip_r_position_controller l_hip_p_position_controller l_hip_y_position_controller l_knee_position_controller l_ankle_r_position_controller l_ankle_p_position_controller l_shoulder_r_position_controller l_shoulder_p_position_controller l_elbow_position_controller joint_state_controller"/> -->
     <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
-    output="screen" ns="/automi" args=" head_pan_position_controller head_tilt_position_controller r_hip_r_position_controller r_hip_p_position_controller r_hip_y_position_controller r_knee_position_controller r_ankle_r_position_controller r_ankle_p_position_controller r_shoulder_r_position_controller r_shoulder_p_position_controller r_elbow_position_controller l_hip_r_position_controller l_hip_p_position_controller l_hip_y_position_controller l_knee_position_controller l_ankle_r_position_controller l_ankle_p_position_controller l_shoulder_r_position_controller l_shoulder_p_position_controller l_elbow_position_controller joint_state_controller"/>
-    
+    output="screen" ns="/automi" args="master_controller "/>
 
   <!-- convert joint states to TF transforms for rviz, etc -->
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"

@@ -19,6 +19,8 @@
   <build_depend>rospy</build_depend>
   <build_depend>gazebo_ros_control</build_depend>
   <build_depend>sensor_msgs</build_depend>
+  <build_depend>trajector_msgs</build_depend>
+  <build_depend>roscpp</build_depend>
   
   <run_depend>gazebo_ros</run_depend>
   <run_depend>rospy</run_depend>
@@ -26,6 +28,8 @@
   <run_depend>sensor_msgs</run_depend>
   <run_depend>automi_description</run_depend>
   <run_depend>hector_gazebo_plugins</run_depend>
+  <run_depend>trajectory_msgs</run_depend>
+  <run_depend>roscpp</run_depend>
 
 
 </package>

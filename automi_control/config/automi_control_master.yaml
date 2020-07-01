@@ -1,0 +1,26 @@
+automi:
+  master_controller:
+    type: "position_controllers/JointTrajectoryController"
+    joints:
+      - head_pan
+      - head_tilt
+      - r_shoulder_r
+      - r_shoulder_p
+      - r_elbow
+      - l_shoulder_r
+      - l_shoulder_p
+      - l_elbow
+      - r_hip_r
+      - r_hip_p
+      - r_hip_y
+      - r_knee
+      - r_ankle_p
+      - r_ankle_r
+      - l_hip_r
+      - l_hip_p
+      - l_hip_y
+      - l_knee
+      - l_ankle_p
+      - l_ankle_r
+    # pid: {p: 100.0,i: 0.01,d: 10.0}
+    allow_partial_joints_goal: True

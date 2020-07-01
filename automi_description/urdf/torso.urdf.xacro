@@ -15,8 +15,8 @@
         <link name="${name}_hip">
             <inertial>
                 <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-                <mass value="1.0"/>
-                <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+                <mass value="0.131665"/>
+                <inertia ixx="0.000519418268" ixy="-1.79595195e-05" ixz="1.2075507e-07" iyy="0.00048709882" iyz="3.8656764e-07" izz="0.000115698856"/>
             </inertial>
             <visual>
                 <origin xyz="0.0 0.02 0.045" rpy="${PI/2} 0.0 ${PI/2}"/>
@@ -47,8 +47,8 @@
         <link name="${name}_core">
             <inertial>
                 <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-                <mass value="1.0"/>
-                <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+                <mass value="1.55086"/>
+                <inertia ixx="0.0034367683" ixy="5.09836432e-05" ixz="4.77030168e-06" iyy="0.00293127768" iyz="-4.57789663e-05" izz="0.00196796593"/>
             </inertial>
             <visual name="">
                 <origin xyz="-0.035 -0.02 -0.02" rpy="${PI/2} 0.0 ${PI/2}"/>
@@ -79,8 +79,8 @@
         <link name="${name}_chest">
             <inertial>
                 <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-                <mass value="1.0"/>
-                <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+                <mass value="0.128678"/>
+                <inertia ixx="0.000284733358" ixy="-1.04236092e-06" ixz="-7.3232262e-07" iyy="0.000360225319" iyz="-6.1818174e-07" izz="0.000135432051"/>
             </inertial>
             <visual name="">
                 <origin xyz="-0.02 -0.09 -0.11" rpy="${PI/2} 0.0 ${PI/2}"/>
@@ -108,8 +108,8 @@
 
         <link name="${name}_int_head">
             <inertial>
-                <mass value="0.0005"/>
-                <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+                <mass value="0.00485437"/>
+                <inertia ixx="8.2936386e-07" ixy="0" ixz="0" iyy="1.0523979e-06" iyz="0" izz="2.7679914e-07"/>
             </inertial> 
             <visual name="">
                 <origin xyz="0.0 0.0 0.0" rpy="${PI/2} 0.0 ${PI/2}"/>
@@ -138,8 +138,8 @@
         <link name="${name}_camera_link">
             <inertial>
                 <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-                <mass value="1.0"/>
-                <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+                <mass value="0.0197099"/>
+                <inertia ixx="3.31024347e-06" ixy="-8.1e-13" ixz="-8.1e-13" iyy="8.74277118e-06" iyz="-4.4037e-10" izz="7.77454497e-06"/>
             </inertial>
             <visual name="">
                 <origin xyz="0.0 0.0 0.0" rpy="0.0 ${-PI/2} 0.0"/>
