@@ -4,7 +4,7 @@ automi:
     publish_rate: 100
   
   master_controller:
-    type: position_controllers/JointTrajectoryController
+    type: effort_controllers/JointTrajectoryController
     joints:
       - head_pan
       - head_tilt
@@ -27,26 +27,26 @@ automi:
       - l_ankle_p
       - l_ankle_r
     # pid: {p: 100.0,i: 0.01,d: 10.0}
-    # gains:
-    #   head_pan: {p: 100.0,  d: 0.5, i: 5.0}
-    #   head_tilt: {p: 100.0,  d: 0.5, i: 5.0}
-    #   r_shoulder_r: {p: 100.0,  d: 0.5, i: 5.0}
-    #   r_shoulder_p: {p: 100.0,  d: 0.5, i: 5.0}
-    #   r_elbow: {p: 100.0,  d: 0.5, i: 5.0}
-    #   l_shoulder_r: {p: 100.0,  d: 0.5, i: 5.0}
-    #   l_shoulder_p: {p: 100.0,  d: 0.5, i: 5.0}
-    #   l_elbow: {p: 100.0,  d: 0.5, i: 5.0}
-    #   r_hip_r: {p: 100.0,  d: 0.5, i: 5.0}
-    #   r_hip_p: {p: 100.0,  d: 0.5, i: 5.0}
-    #   r_hip_y: {p: 100.0,  d: 0.5, i: 5.0}
-    #   r_knee: {p: 100.0,  d: 0.5, i: 5.0}
-    #   r_ankle_p: {p: 100.0,  d: 0.5, i: 5.0}
-    #   r_ankle_r: {p: 100.0,  d: 0.5, i: 5.0}
-    #   l_hip_r: {p: 100.0,  d: 0.5, i: 5.0}
-    #   l_hip_p: {p: 100.0,  d: 0.5, i: 5.0}
-    #   l_hip_y: {p: 100.0,  d: 0.5, i: 5.0}
-    #   l_knee: {p: 100.0,  d: 0.5, i: 5.0}
-    #   l_ankle_p: {p: 100.0,  d: 0.5, i: 5.0}
-    #   l_ankle_r: {p: 100.0,  d: 0.5, i: 5.0}
+    gains:
+      head_pan: {p: 20.0,  d: 0.0, i: 0.0}
+      head_tilt: {p: 20.0,  d: 0.0, i: 0.0}
+      r_shoulder_r: {p: 100.0,  d: 0.01, i: 0.0}
+      r_shoulder_p: {p: 100.0,  d: 0.01, i: 0.0}
+      r_elbow: {p: 100.0,  d: 0.01, i: 0.0}
+      l_shoulder_r: {p: 100.0,  d: 0.01, i: 0.0}
+      l_shoulder_p: {p: 100.0,  d: 0.01, i: 0.0}
+      l_elbow: {p: 100.0,  d: 0.01, i: 0.0}
+      r_hip_r: {p: 100.0,  d: 0.01, i: 0.0}
+      r_hip_p: {p: 100.0,  d: 0.01, i: 0.0}
+      r_hip_y: {p: 100.0,  d: 0.01, i: 0.0}
+      r_knee: {p: 100.0,  d: 0.01, i: 0.0}
+      r_ankle_p: {p: 100.0,  d: 0.01, i: 0.0}
+      r_ankle_r: {p: 100.0,  d: 0.01, i: 0.0}
+      l_hip_r: {p: 100.0,  d: 0.01, i: 0.0}
+      l_hip_p: {p: 100.0,  d: 0.01, i: 0.0}
+      l_hip_y: {p: 100.0,  d: 0.01, i: 0.0}
+      l_knee: {p: 100.0,  d: 0.01, i: 0.0}
+      l_ankle_p: {p: 100.0,  d: 0.01, i: 0.0}
+      l_ankle_r: {p: 100.0,  d: 0.01, i: 0.0}
   
     allow_partial_joints_goal: True

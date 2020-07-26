@@ -7,7 +7,7 @@ ROS package providing ROS controller description and launch files for the Automi
 
 A tutorial describing how to use this package can be found at:
 
-http://www.generationrobots.com/en/content/83-carry-out-simulations-and-make-your-automi-op-walk-with-gazebo-and-ros
+http://www.generationrobots.com/en/content/83-carry-out-simulations-and-make-your-darwin-op-walk-with-gazebo-and-ros
 
 ## Install
 Just clone in your catkin workspace. Launch with:

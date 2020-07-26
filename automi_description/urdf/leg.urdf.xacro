@@ -155,15 +155,31 @@
             </collision>
         </link>
 
+        <joint name="${name}_foot_base_j" type="fixed">
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <parent link="${name}_foot"/>
+            <child link="${name}_foot_base"/>
+        </joint>
+
+        <link name="${name}_foot_base">
+            <collision>
+                <origin xyz="0.0 -0.04 0.03" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.08 0.005 0.12"/>
+                </geometry>
+            </collision>
+        </link>
+
         <gazebo reference="${name}_foot">
             <material>Gazebo/SkyBlue</material>    
-
-            <mu1>9000</mu1>
-            <mu2>9000</mu2>
-            <kp>1000000.0</kp>
-            <kd>10.0</kd>
+        </gazebo>
+        <gazebo reference="${name}_foot_base">
+            <mu1>1</mu1>
+            <mu2>1</mu2>
+            <kp>0.0</kp>
+            <kd>10000.0</kd>
             <minDepth>0.001</minDepth>
-            <maxContacts>1</maxContacts>    
+            <maxContacts>2</maxContacts>    
         </gazebo>
     
     </xacro:macro>

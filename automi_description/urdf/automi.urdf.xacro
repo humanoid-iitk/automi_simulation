@@ -7,6 +7,7 @@
     <xacro:include filename="$(find automi_description)/urdf/torso.urdf.xacro" />
     <xacro:include filename="$(find automi_description)/urdf/arm.urdf.xacro" />
     <xacro:include filename="$(find automi_description)/urdf/leg.urdf.xacro" />
+    <xacro:include filename="$(find automi_description)/urdf/transmissions.urdf.xacro" />
     
     <link name="floating_base">
         <inertial>
@@ -53,38 +54,5 @@
         </plugin>
     </gazebo>
 
-    <xacro:macro name="trans" params="num joint">
-        <transmission name="tran${num}">
-            <joint name="${joint}">
-                <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-            </joint>
-            <type>transmission_interface/SimpleTransmission</type>
-            <actuator name="servo${num}">
-                <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-                <mechanicalReduction>1</mechanicalReduction>
-            </actuator>
-        </transmission>
-    </xacro:macro>
-
-    <xacro:trans num="1"  joint="r_hip_r"/>
-    <xacro:trans num="2"  joint="r_hip_p"/>
-    <xacro:trans num="3"  joint="r_hip_y"/>
-    <xacro:trans num="4"  joint="r_knee"/>
-    <xacro:trans num="5"  joint="r_ankle_r"/>
-    <xacro:trans num="6"  joint="r_ankle_p"/>
-    <xacro:trans num="7" joint="l_hip_r"/>
-    <xacro:trans num="8" joint="l_hip_p"/>
-    <xacro:trans num="9" joint="l_hip_y"/>
-    <xacro:trans num="10" joint="l_knee"/>
-    <xacro:trans num="11" joint="l_ankle_r"/>
-    <xacro:trans num="12" joint="l_ankle_p"/>
-    <xacro:trans num="13"  joint="r_shoulder_r"/>
-    <xacro:trans num="14" joint="r_shoulder_p"/>
-    <xacro:trans num="15" joint="r_elbow"/>
-    <xacro:trans num="16" joint="l_shoulder_r"/>
-    <xacro:trans num="17" joint="l_shoulder_p"/>
-    <xacro:trans num="18" joint="l_elbow"/>
-    <xacro:trans num="19"  joint="head_pan"/>
-    <xacro:trans num="20"  joint="head_tilt"/>
 
 </robot>
