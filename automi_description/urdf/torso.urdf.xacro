@@ -130,12 +130,12 @@
         <xacro:AX18
             name="head_tilt"
             parent="${name}_int_head"
-            child="${name}_camera_link">
+            child="${name}_camera_bracer">
             <origin xyz="0.0 0.0 0.05" rpy="${PI/2} 0.0 0.0"/>
             <origin xyz="-0.00 0.0 0.0" rpy="0.0 0.0 0.0"/>
         </xacro:AX18>
 
-        <link name="${name}_camera_link">
+        <link name="${name}_camera_bracer">
             <inertial>
                 <origin xyz="-0.01 0.0 0.0" rpy="0.0 ${-PI/2} 0.0"/>
                 <mass value="0.0197099"/>
@@ -156,7 +156,177 @@
                 </geometry>
             </collision> 
         </link>
-        <gazebo reference="${name}_camera_link">
+
+        <joint name="camera_brace_j" type="fixed">
+            <origin xyz="-0.025 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <parent link="${name}_camera_bracer"/>
+            <child link="${name}_camera_link"/>
+        </joint>
+        <gazebo reference="camera_brace_j">
+			<provideFeedback>true</provideFeedback>
+            <preserveFixedJoint>true</preserveFixedJoint>
+		</gazebo>
+
+        <link name="${name}_camera_link">
+            <inertial>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <mass value="0.05"/>
+                <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+            </inertial>
+            <visual>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.005 0.02 0.03"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.005 0.02 0.03"/>
+                </geometry>
+            </collision>
+        </link>
+
+        <joint name="${name}_camera_l_j" type="fixed">
+            <origin xyz="0.0 0.0 0.025" rpy="${-PI/2} ${PI} 0.0"/>
+            <parent link="${name}_camera_link"/>
+            <child link="${name}_camera_l"/>
+        </joint>
+        <gazebo reference="${name}_camera_l_j">
+			<provideFeedback>true</provideFeedback>
+            <preserveFixedJoint>true</preserveFixedJoint>
+		</gazebo>
+
+        <joint name="${name}_camera_r_j" type="fixed">
+            <origin xyz="0.0 0.0 -0.025" rpy="${-PI/2} ${PI} 0.0"/>
+            <parent link="${name}_camera_link"/>
+            <child link="${name}_camera_r"/>
+        </joint>
+        <gazebo reference="${name}_camera_r_j">
+			<provideFeedback>true</provideFeedback>
+            <preserveFixedJoint>true</preserveFixedJoint>
+		</gazebo>
+
+        <link name="${name}_camera_l">
+            <inertial>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <mass value="0.100"/>
+                <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+            </inertial>
+            <visual>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.02 0.02 0.02"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.02 0.02 0.02"/>
+                </geometry>
+            </collision>
+        </link>
+
+        <link name="${name}_camera_r">
+            <inertial>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <mass value="0.1"/>
+                <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+            </inertial>
+            <visual>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.02 0.02 0.02"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.02 0.02 0.02"/>
+                </geometry>
+            </collision>
+        </link>
+
+        <gazebo reference="${name}_camera_l">
+            <material>
+                Gazebo/Yellow
+            </material>
+            <sensor type="camera" name="camera_l">
+            <update_rate>30.0</update_rate>
+            <camera name="head">
+                <horizontal_fov>1.3962634</horizontal_fov>
+                <image>
+                <width>800</width>
+                <height>800</height>
+                <format>R8G8B8</format>
+                </image>
+                <clip>
+                <near>0.02</near>
+                <far>300</far>
+                </clip>
+                <noise>
+                <type>gaussian</type>
+                <mean>0.0</mean>
+                <stddev>0.007</stddev>
+                </noise>
+            </camera>
+            <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+                <alwaysOn>true</alwaysOn>
+                <updateRate>0.0</updateRate>
+                <cameraName>automi/camera_l</cameraName>
+                <imageTopicName>image_raw</imageTopicName>
+                <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+                <frameName>camera_l</frameName>
+                <hackBaseline>0.07</hackBaseline>
+                <distortionK1>0.0</distortionK1>
+                <distortionK2>0.0</distortionK2>
+                <distortionK3>0.0</distortionK3>
+                <distortionT1>0.0</distortionT1>
+                <distortionT2>0.0</distortionT2>
+            </plugin>
+            </sensor>
+        </gazebo>
+
+        <gazebo reference="${name}_camera_r">
+            <material>
+                Gazebo/Yellow
+            </material>
+            <sensor type="camera" name="camera_r">
+            <update_rate>30.0</update_rate>
+            <camera name="head">
+                <horizontal_fov>1.3962634</horizontal_fov>
+                <image>
+                <width>800</width>
+                <height>800</height>
+                <format>R8G8B8</format>
+                </image>
+                <clip>
+                <near>0.02</near>
+                <far>300</far>
+                </clip>
+                <noise>
+                <type>gaussian</type>
+                <mean>0.0</mean>
+                <stddev>0.007</stddev>
+                </noise>
+            </camera>
+            <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+                <alwaysOn>true</alwaysOn>
+                <updateRate>0.0</updateRate>
+                <cameraName>automi/camera_r</cameraName>
+                <imageTopicName>image_raw</imageTopicName>
+                <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+                <frameName>camera_r</frameName>
+                <hackBaseline>0.07</hackBaseline>
+                <distortionK1>0.0</distortionK1>
+                <distortionK2>0.0</distortionK2>
+                <distortionK3>0.0</distortionK3>
+                <distortionT1>0.0</distortionT1>
+                <distortionT2>0.0</distortionT2>
+            </plugin>
+            </sensor>
+        </gazebo>
+        <gazebo reference="${name}_camera_bracer">
             <material>
                 Gazebo/Red
             </material>

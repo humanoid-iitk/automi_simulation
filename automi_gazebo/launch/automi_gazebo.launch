@@ -9,7 +9,7 @@
     
   </include>
   
-  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model automi -z 0.32" />
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model automi -z 0.33" />
 
   <include file="$(find automi_control)/launch/automi_control.launch"/>
 

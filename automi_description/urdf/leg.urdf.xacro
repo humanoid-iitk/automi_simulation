@@ -177,7 +177,7 @@
             <mu1>1</mu1>
             <mu2>1</mu2>
             <kp>0.0</kp>
-            <kd>10000.0</kd>
+            <kd>100000.0</kd>
             <minDepth>0.001</minDepth>
             <maxContacts>2</maxContacts>    
         </gazebo>
